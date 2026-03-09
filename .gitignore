@@ -3,5 +3,5 @@ __pycache__/
 *.pyc
 .env
 *.zip
+*.rar
 fotos_arquis/
-proyectos/
