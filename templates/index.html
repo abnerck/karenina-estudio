@@ -10,8 +10,8 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 <style>
 :root {
-  
-  --dark2:     #1c1b1b;
+  --dark:      #1c1b1b;
+  --dark2:     #bcbbba;
   --primary:   #9a705e;
   --secondary: #644031;
   --light:     #341b12;
@@ -37,28 +37,10 @@ body {
 }
 
 /* ── CURSOR ───────────────────────────────────────────── */
-.cursor {
-  position: fixed; width: 10px; height: 10px;
-  background: var(--secondary); border-radius: 50%;
-  pointer-events: none; z-index: 99999;
-  transition: transform 0.1s ease; mix-blend-mode: difference;
-}
-.cursor-ring {
-  position: fixed; width: 42px; height: 42px;
-  border: 1px solid rgba(154,112,94,0.6); border-radius: 50%;
-  pointer-events: none; z-index: 99998;
-  transition: width 0.3s, height 0.3s, transform 0.08s linear;
-  mix-blend-mode: difference;
-}
-.cursor-ring.grow { width: 70px; height: 70px; }
-.cursor-label {
-  position: fixed; pointer-events: none; z-index: 99997;
-  font-family: 'Space Mono', monospace; font-size: 0.5rem;
-  letter-spacing: 0.1em; color: var(--secondary); opacity: 0;
-  transition: opacity 0.3s; text-transform: uppercase;
-  white-space: nowrap;
-}
-.cursor-label.show { opacity: 1; }
+.cursor { display: none; }
+  .cursor-ring { display: none; }
+  .cursor-label { display: none; }
+  body { cursor: auto; }
 
 /* ── LOADER ───────────────────────────────────────────── */
 #loader {
@@ -115,11 +97,11 @@ nav.scrolled {
   backdrop-filter: blur(16px);
   border-color: rgba(100,64,49,0.2);
 }
-.nav-logo { display: flex; align-items: center; gap: 14px; text-decoration: none; }
-.nav-logo img {
-  height: 44px;
-  filter: brightness(0) invert(1) sepia(0.4) saturate(0.6);
-}
+.nav-logo { display: flex; align-items: center; gap: 14px; text-decoration: none; overflow: hidden; height: 44px; }
+  .nav-logo img {
+    height: 140px;
+    filter: brightness(0) invert(1) sepia(0.4) saturate(0.6);
+  }
 .nav-links { display: flex; gap: clamp(14px, 2vw, 44px); list-style: none; }
 .nav-links a {
   font-family: 'Space Mono', monospace; font-size: clamp(0.5rem, 0.9vw, 0.65rem);
@@ -210,11 +192,11 @@ nav.scrolled {
 .btn-fill {
   font-family: 'Space Mono', monospace; font-size: 0.6rem;
   letter-spacing: 0.15em; text-transform: uppercase;
-  padding: 16px 38px; background: var(--primary);
+  padding: 16px 38px; background: var(--warm);
   color: var(--cream); text-decoration: none;
   border: 1px solid var(--primary); transition: all 0.35s; cursor: none;
 }
-.btn-fill:hover { background: transparent; color: var(--primary); }
+.btn-fill:hover { background: transparent; color: var(--dark); }
 .btn-outline {
   font-family: 'Space Mono', monospace; font-size: 0.6rem;
   letter-spacing: 0.15em; text-transform: uppercase;
@@ -275,7 +257,7 @@ nav.scrolled {
 .stat-item:last-child  { border: none; }
 .stat-number {
   font-family: 'Bebas Neue', sans-serif; font-size: 4.5rem;
-  color: var(--dark2); line-height: 1;
+  color: var(--light); line-height: 1;
   display: flex; align-items: baseline; justify-content: center; gap: 4px;
 }
 .stat-item:first-child .stat-number { justify-content: flex-start; }
@@ -295,7 +277,7 @@ nav.scrolled {
   display: grid; grid-template-columns: 1fr 1fr; gap: 100px; align-items: center;
   position: relative; overflow: hidden;
 }
-.about-reverse { direction: ltr; }
+.about-reverse { direction: ltr; background: var(--warm);}
 .about-reverse > *:first-child { order: 1; }
 .about-reverse > *:last-child  { order: 2; }
 .about-watermark {
@@ -307,16 +289,16 @@ nav.scrolled {
 .section-tag {
   font-family: 'Space Mono', monospace; font-size: 0.58rem;
   letter-spacing: 0.3em; text-transform: uppercase;
-  color: var(--secondary); margin-bottom: 22px;
+  color: #e8ddd5; margin-bottom: 22px;
   display: flex; align-items: center; gap: 14px;
 }
 .section-tag::before { content: ''; width: 28px; height: 1px; background: var(--secondary); }
 .section-title {
   font-family: 'Cormorant Garamond', serif;
   font-size: clamp(2.8rem,4.5vw,4.5rem); font-weight: 300;
-  line-height: 1.12; color: var(--cream); margin-bottom: 32px;
+  line-height: 1.12; color: var(--warm); margin-bottom: 32px;
 }
-.section-title strong { font-weight: 600; font-style: italic; color: var(--secondary); }
+.section-title strong { font-weight: 600; font-style: italic; color: #e8ddd5; }
 .about-text {
   font-size: 1.05rem; font-weight: 300; color: rgba(242,237,232,0.6);
   line-height: 1.9; margin-bottom: 20px;
@@ -325,7 +307,7 @@ nav.scrolled {
   display: inline-flex; align-items: center; gap: 12px; margin-top: 28px;
   font-family: 'Space Mono', monospace; font-size: 0.58rem;
   letter-spacing: 0.15em; text-transform: uppercase;
-  color: var(--secondary); text-decoration: none; transition: gap 0.35s;
+  color: var(--warm); text-decoration: none; transition: gap 0.35s;
 }
 .text-link:hover { gap: 22px; }
 .about-img-wrap { position: relative; }
@@ -353,7 +335,7 @@ nav.scrolled {
 }
 
 /* ── SERVICES ─────────────────────────────────────────── */
-.services { padding: 160px 64px; background: var(--dark2); position: relative; }
+.services { padding: 160px 64px; background: var(--secondary); position: relative; }
 .services-header {
   display: flex; justify-content: space-between; align-items: flex-end;
   margin-bottom: 80px;
@@ -364,33 +346,33 @@ nav.scrolled {
 }
 .service-card {
   padding: 52px 42px; position: relative; overflow: hidden;
-  background: rgba(242,237,232,0.02);
-  border: 1px solid rgba(242,237,232,0.05);
+  background:var(--light);
+  border: var(--warm);
   transition: transform 0.45s cubic-bezier(0.25,0.46,0.45,0.94); cursor: none;
 }
 .service-card::before {
   content: ''; position: absolute; left: 0; top: 0; bottom: 0;
-  width: 3px; background: var(--secondary);
+  width: 3px; background: var(--warm);/*FONDO DE LA CARTA*/
   transform: scaleY(0); transform-origin: bottom; transition: transform 0.45s;
 }
 .service-card:hover::before { transform: scaleY(1); }
-.service-card:hover { transform: translateX(8px); background: rgba(100,64,49,0.06); }
+.service-card:hover { transform: translateX(8px); background:var(--dark); }
 .service-num {
   font-family: 'Bebas Neue', sans-serif; font-size: 5rem;
-  color: rgba(242,237,232,0.04); line-height: 1;
+  color: var(--warm); line-height: 1;
   position: absolute; top: 16px; right: 20px;
 }
 .service-icon {
-  font-size: 2rem; color: var(--secondary);
+  font-size: 2rem; color: var(--warm);
   margin-bottom: 28px; display: block;
 }
 .service-title {
   font-family: 'Cormorant Garamond', serif; font-size: 1.7rem;
-  font-weight: 600; color: var(--cream); margin-bottom: 14px;
+  font-weight: 600; color: var(--warm); margin-bottom: 14px;
 }
 .service-desc {
   font-size: 0.95rem; font-weight: 300;
-  color: rgba(220, 127, 34, 0.5); line-height: 1.8;
+  color: hwb(90 97% 2% / 0.502); line-height: 1.8;
 }
 
 /* ── PORTFOLIO ────────────────────────────────────────── */
@@ -433,7 +415,7 @@ nav.scrolled {
 }
 .port-btn {
   width: 54px; height: 54px; border: 1px solid rgba(242,237,232,0.18);
-  background: transparent; color: var(--cream); font-size: 1rem;
+  background: transparent; color: var(--warm); font-size: 1rem;
   display: flex; align-items: center; justify-content: center;
   transition: all 0.3s; cursor: none;
 }
@@ -446,7 +428,7 @@ nav.scrolled {
 .pdot.active { background: var(--secondary); width: 26px; border-radius: 3px; }
 
 /* ── PROCESS ──────────────────────────────────────────── */
-.process { padding: 160px 64px; background: var(--dark2); }
+.process { padding: 160px 64px; background: var(--primary); }
 .process-grid {
   display: grid; grid-template-columns: repeat(4,1fr);
   margin-top: 80px; position: relative;
@@ -493,29 +475,30 @@ nav.scrolled {
 }
 .team-card { position: relative; overflow: hidden; background: var(--dark); }
 .team-card img {
-  width: 100%; height: 400px; object-fit: cover;
-  object-position: top; display: block; transition: transform 0.7s ease;
-  filter: sepia(0.1) contrast(1.05);
-}
+    width: 100%; height: 480px; object-fit: cover;
+    object-position: top; display: block;
+    filter: sepia(0.1) contrast(1.05);
+  } 
 .team-card:hover img { transform: scale(1.04); }
 .team-body { padding: 40px 44px; }
 .team-name {
   font-family: 'Cormorant Garamond', serif; font-size: 2rem;
-  font-weight: 600; color: var(--cream); margin-bottom: 4px;
+  font-weight: 600; color: var(--dark2); margin-bottom: 4px;
 }
 .team-role {
   font-family: 'Space Mono', monospace; font-size: 0.58rem;
   letter-spacing: 0.18em; text-transform: uppercase;
-  color: var(--secondary); margin-bottom: 20px;
+  color: var(--warm); margin-bottom: 20px;
 }
 .team-desc {
   font-size: 1rem; font-weight: 300;
   color: rgba(242,237,232,0.6); line-height: 1.85;
 }
-.team-card-accent {
-  position: absolute; top: 0; right: 0;
-  width: 4px; height: 80px; background: var(--primary);
-}
+.team-card img {
+    width: 100%; height: 520px; object-fit: cover;
+    object-position: center 20%; display: block; transition: transform 0.7s ease;
+    filter: sepia(0.1) contrast(1.05);
+  }
 
 /* ── QUOTE ────────────────────────────────────────────── */
 .quote-section {
@@ -537,7 +520,7 @@ nav.scrolled {
 .quote-author {
   font-family: 'Space Mono', monospace; font-size: 0.62rem;
   letter-spacing: 0.25em; text-transform: uppercase;
-  color: rgba(242,237,232,0.6); position: relative; z-index: 1;
+  color: var(--cream); position: relative; z-index: 1;
 }
 
 /* ── CONTACT ──────────────────────────────────────────── */
@@ -571,7 +554,7 @@ nav.scrolled {
 }
 .contact-txt strong {
   font-family: 'Cormorant Garamond', serif; font-size: 1.1rem;
-  font-weight: 400; color: var(--dark2);
+  font-weight: 400; color: var(--dark);
 }
 .contact-socials { display: flex; gap: 14px; margin-top: 36px; }
 .contact-socials a {
@@ -609,52 +592,59 @@ nav.scrolled {
 }
 .btn-submit:hover { background: var(--primary); }
 
-/* ── FOOTER ───────────────────────────────────────────── */
+/** ── FOOTER ─────────────────────────────────────────────── */
 footer {
-  background: var(--dark); padding: 90px 64px 44px;
-  border-top: 1px solid rgba(100,64,49,0.2);
-}
-.footer-top {
-  display: grid; grid-template-columns: 2fr 1fr 1fr 1fr;
-  gap: 64px; margin-bottom: 64px;
-}
-.footer-logo img {
-  height: 52px; filter: brightness(0) invert(1) sepia(0.3) saturate(0.5);
-  margin-bottom: 20px;
-}
-.footer-tagline {
-  font-size: 0.95rem; font-weight: 300;
-  color: rgba(242,237,232,0.45); line-height: 1.8;
-  max-width: 270px; margin-bottom: 28px;
-}
-.footer-social { display: flex; gap: 12px; }
-.footer-social a {
-  width: 38px; height: 38px; border: 1px solid rgba(242,237,232,0.1);
-  display: flex; align-items: center; justify-content: center;
-  color: rgba(242,237,232,0.4); text-decoration: none; font-size: 0.85rem;
-  transition: all 0.3s;
-}
-.footer-social a:hover { border-color: var(--secondary); color: var(--secondary); transform: translateY(-3px); }
-.footer-col-title {
-  font-family: 'Space Mono', monospace; font-size: 0.58rem;
-  letter-spacing: 0.2em; text-transform: uppercase;
-  color: var(--cream); margin-bottom: 24px;
-}
-.footer-links { list-style: none; display: flex; flex-direction: column; gap: 12px; }
-.footer-links a {
-  font-size: 0.9rem; font-weight: 300;
-  color: rgba(242,237,232,0.4); text-decoration: none; transition: color 0.3s;
-}
-.footer-links a:hover { color: var(--secondary); }
-.footer-bottom {
-  border-top: 1px solid rgba(242,237,232,0.06); padding-top: 28px;
-  display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;
-}
-.footer-copy {
-  font-family: 'Space Mono', monospace; font-size: 0.52rem;
-  letter-spacing: 0.1em; color: rgba(242,237,232,0.3);
-}
-.footer-copy span { color: var(--secondary); }
+    background: var(--dark); padding: 40px 64px 24px;
+    border-top: 1px solid rgba(100,64,49,0.2);
+  }
+  .footer-top {
+    display: grid; grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 32px; margin-bottom: 28px;
+  }
+
+  .footer-logo {
+    overflow: hidden;
+    height: 80px;
+  }
+
+  .footer-logo img {
+    height: 140px; filter: brightness(0) invert(1) sepia(0.3) saturate(0.5);
+    margin-bottom: 10px;
+  }
+
+  .footer-tagline {
+    font-size: 0.85rem; font-weight: 300;
+    color: rgba(242,237,232,0.45); line-height: 1.7;
+    max-width: 270px; margin-bottom: 16px;
+  }
+  .footer-social { display: flex; gap: 10px; }
+  .footer-social a {
+    width: 32px; height: 32px; border: 1px solid rgba(242,237,232,0.1);
+    display: flex; align-items: center; justify-content: center;
+    color: rgba(242,237,232,0.4); text-decoration: none; font-size: 0.8rem;
+    transition: all 0.3s;
+  }
+  .footer-social a:hover { border-color: var(--secondary); color: var(--secondary); transform: translateY(-3px); }
+  .footer-col-title {
+    font-family: 'Space Mono', monospace; font-size: 0.58rem;
+    letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--cream); margin-bottom: 16px;
+  }
+  .footer-links { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+  .footer-links a {
+    font-size: 0.85rem; font-weight: 300;
+    color: rgba(242,237,232,0.4); text-decoration: none; transition: color 0.3s;
+  }
+  .footer-links a:hover { color: var(--secondary); }
+  .footer-bottom {
+    border-top: 1px solid rgba(242,237,232,0.06); padding-top: 16px;
+    display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px;
+  }
+  .footer-copy {
+    font-family: 'Space Mono', monospace; font-size: 0.52rem;
+    letter-spacing: 0.1em; color: rgba(242,237,232,0.3);
+  }
+  .footer-copy span { color: var(--secondary); }
 
 /* ── WHATSAPP ─────────────────────────────────────────── */
 .wa-btn {
@@ -766,15 +756,18 @@ footer {
 
 <!-- LOADER -->
 <div id="loader">
-  <div class="loader-brand">
-    <img src="{{ url_for('static', filename='img/logo.png') }}" alt="Karenina Estudio">
+    <div class="loader-brand">
+      <img src="{{ url_for('static', filename='img/logo.png') }}" alt="Karenina Estudio" style="width: 220px; opacity: 0; animation: fadeUp 0.8s 0.3s forwards; filter:
+  brightness(0) invert(1) sepia(1) saturate(0.3) hue-rotate(0deg);">
+    </div>
+    <div class="loader-word">
+      <span style="animation-delay:0.4s">K</span><span style="animation-delay:0.5s">A</span><span style="animation-delay:0.6s">R</span><span
+  style="animation-delay:0.7s">E</span><span style="animation-delay:0.8s">N</span><span style="animation-delay:0.9s">I</span><span
+  style="animation-delay:1.0s">N</span><span style="animation-delay:1.1s">A</span>
+    </div>
+    <div class="loader-sub">Estudio de Arquitectura</div>
+    <div class="loader-line"><div class="loader-fill"></div></div>
   </div>
-  <div class="loader-word">
-    <span style="animation-delay:0.4s">K</span><span style="animation-delay:0.5s">A</span><span style="animation-delay:0.6s">R</span><span style="animation-delay:0.7s">E</span><span style="animation-delay:0.8s">N</span><span style="animation-delay:0.9s">I</span><span style="animation-delay:1.0s">N</span><span style="animation-delay:1.1s">A</span>
-  </div>
-  <div class="loader-sub">Estudio de Arquitectura</div>
-  <div class="loader-line"><div class="loader-fill"></div></div>
-</div>
 
 <!-- NAV -->
 <nav id="nav">
@@ -885,11 +878,11 @@ footer {
     <div class="about-img-border" style="left:-24px; right:auto;"></div>
   </div>
   <div class="reveal-right" style="display:flex; flex-direction:column; justify-content:center;">
-    <p class="section-tag">Dirección de Obra</p>
-    <h2 class="section-title">El que hace que<br>todo <strong>suceda</strong></h2>
-    <p class="about-text">Más que planos, entregamos claridad en el proceso, ahorro de tiempo y control total en tu inversión, para que tu obra no sea un dolor de cabeza, sino una experiencia emocionante.</p>
-    <p class="about-text">Pedro coordina a los equipos, supervisa cada etapa y se asegura de que cada decisión en obra cuide tu presupuesto y cumpla con la visión del proyecto.</p>
-    <a href="#contacto" class="text-link">Agendar consulta <i class="fas fa-arrow-right"></i></a>
+    <p class="section-tag" style="color: var(--dark);">Dirección de Obra</p>
+    <h2 class="section-title" style="color: var(--dark);">El que hace que<br>todo <strong style="color:var(--dark)">suceda</strong></h2>
+    <p class="about-text" style="color: var(--light);"">Más que planos, entregamos claridad en el proceso, ahorro de tiempo y control total en tu inversión, para que tu obra no sea un dolor de cabeza, sino una experiencia emocionante.</p>
+    <p class="about-text" style="color: var(--secondary);">Pedro coordina a los equipos, supervisa cada etapa y se asegura de que cada decisión en obra cuide tu presupuesto y cumpla con la visión del proyecto.</p>
+    <a href="#contacto" class="text-link" style="color:var(--dark);">Agendar consulta <i class="fas fa-arrow-right"></i></a>
   </div>
 </section>
 
@@ -900,7 +893,7 @@ footer {
       <p class="section-tag">Nuestros Servicios</p>
       <h2 class="section-title">Lo que <strong>creamos</strong><br>para ti</h2>
     </div>
-    <a href="#contacto" class="btn-fill">Solicitar Cotización</a>
+    <a href="#contacto" class="btn-fill" >Solicitar Cotización</a>
   </div>
   <div class="services-grid reveal">
     <div class="service-card">
@@ -946,10 +939,10 @@ footer {
 <section class="portfolio" id="proyectos">
   <div class="portfolio-header reveal">
     <div>
-      <p class="section-tag" style="color:var(--secondary)">Portafolio</p>
+      <p class="section-tag" style="color:var(--warm)">Portafolio</p>
       <h2 class="section-title">Proyectos que<br><strong>definen</strong> hogares</h2>
     </div>
-    <a href="#contacto" class="btn-outline" style="border-color:rgba(242,237,232,0.3);color:var(--cream)">Platícanos tu proyecto</a>
+    <a href="#contacto" class="btn-outline" style="border-color:rgba(242,237,232,0.3);color:var(--warm)">Platícanos tu proyecto</a>
   </div>
   <div class="portfolio-track-wrap">
     <div class="portfolio-track" id="portTrack">
@@ -1028,40 +1021,272 @@ footer {
 </section>
 
 <!-- PROCESS -->
-<section class="process" id="proceso">
+<!-- ====================================================
+     PROCESS SECTION — Karenina Estudio
+     Estilos inline = máxima prioridad
+     Copia y pega esto en tu index.html
+     ==================================================== -->
+
+<!-- PROCESS -->
+<section class="process" id="proceso" style="
+  padding: 160px 64px;
+  background: rgb(0, 0, 0);
+  position: relative;
+  overflow: hidden;
+">
+
+  <!-- Fondo decorativo -->
+  <div style="
+    position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+    background: radial-gradient(ellipse at 80% 50%, rgba(154,112,94,0.07) 0%, transparent 70%);
+    pointer-events: none;
+  "></div>
+
+  <!-- Línea decorativa izquierda -->
+  <div style="
+    position: absolute; left: 64px; top: 0; bottom: 0;
+    width: 1px;
+    background: linear-gradient(to bottom, transparent, rgba(154,112,94,0.3), transparent);
+  "></div>
+
   <div class="reveal">
-    <p class="section-tag">Cómo Trabajamos</p>
-    <h2 class="section-title">De la idea a la <strong>realidad</strong></h2>
+    <p class="section-tag" style="
+      color: #9a705e;
+      font-family: 'Space Mono', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    ">Cómo Trabajamos</p>
+
+    <h2 class="section-title" style="
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      font-weight: 300;
+      color: #e8ddd5;
+      line-height: 1.1;
+      margin-bottom: 0;
+    ">De la idea a la <strong style="font-weight: 600; color: #9a705e;">realidad</strong></h2>
   </div>
-  <div class="process-grid reveal">
-    <div class="process-item">
-      <div class="process-dot"></div>
-      <div class="process-num">01</div>
-      <div class="process-icon"><i class="fas fa-comments"></i></div>
-      <h3 class="process-title">Consulta Inicial</h3>
-      <p class="process-desc">Platicamos contigo para entender tus ideas, necesidades y presupuesto. Revisamos el espacio y te damos opciones claras para optimizar tu inversión.</p>
+
+  <div class="process-grid reveal" style="
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    margin-top: 100px;
+    position: relative;
+    gap: 0 20px;
+  ">
+
+    <!-- Línea conectora entre pasos -->
+    <div style="
+      position: absolute;
+      top: 7px;
+      left: 7px;
+      right: calc(25% + 13px);
+      height: 1px;
+      background: linear-gradient(to right, #644031, rgba(154,112,94,0.2));
+      z-index: 1;
+    "></div>
+    <div style="
+      position: absolute;
+      top: 7px;
+      left: calc(25% + 13px);
+      right: calc(50% - 7px);
+      height: 1px;
+      background: linear-gradient(to right, rgba(154,112,94,0.2), rgba(154,112,94,0.4));
+      z-index: 1;
+    "></div>
+    <div style="
+      position: absolute;
+      top: 7px;
+      left: calc(50% + 7px);
+      right: calc(25% + 13px);
+      height: 1px;
+      background: linear-gradient(to right, rgba(154,112,94,0.4), rgba(154,112,94,0.15));
+      z-index: 1;
+    "></div>
+
+    <!-- PASO 01 -->
+    <div class="process-item" style="padding: 0 30px 0 0; position: relative;">
+
+      <div style="
+        width: 14px; height: 14px; border-radius: 50%;
+        border: 2px solid #9a705e;
+        background: #644031;
+        margin-bottom: 40px;
+        position: relative; z-index: 2;
+        box-shadow: 0 0 12px rgba(154,112,94,0.4);
+      "></div>
+
+      <div style="
+        font-family: 'Bebas Neue', sans-serif;
+        font-size: 7rem;
+        color:var(--dark2);
+        line-height: 0.85;
+        margin-bottom: 20px;
+        user-select: none;
+      ">01</div>
+
+      <div style="
+        width: 50px; height: 50px;
+        border: 1px solid rgba(154,112,94,0.35);
+        display: flex; align-items: center; justify-content: center;
+        color: #9a705e; font-size: 1.1rem;
+        margin-bottom: 24px;
+        background: rgba(154,112,94,0.05);
+        transition: all 0.3s;
+      "><i class="fas fa-comments"></i></div>
+
+      <h3 style="
+        font-family: 'Cormorant Garamond', serif;
+        font-size: 1.5rem; font-weight: 600;
+        color: #e8ddd5;
+        margin-bottom: 14px;
+        letter-spacing: 0.02em;
+      ">Consulta Inicial</h3>
+
+      <p style="
+        font-size: 0.88rem; font-weight: 300;
+        color: #bcbbba;
+        line-height: 1.9;
+      ">Platicamos contigo para entender tus ideas, necesidades y presupuesto. Revisamos el espacio y te damos opciones claras para optimizar tu inversión.</p>
     </div>
-    <div class="process-item">
-      <div class="process-dot"></div>
-      <div class="process-num">02</div>
-      <div class="process-icon"><i class="fas fa-pencil-ruler"></i></div>
-      <h3 class="process-title">Etapa Creativa</h3>
-      <p class="process-desc">Creamos un diseño a tu medida con estilo y funcionalidad. Te mostramos vistas digitales para que veas cómo lucirá tu proyecto antes de empezar.</p>
+
+    <!-- PASO 02 -->
+    <div class="process-item" style="padding: 0 30px 0 0; position: relative;">
+
+      <div style="
+        width: 14px; height: 14px; border-radius: 50%;
+        border: 2px solid #9a705e;
+        background: #644031;
+        margin-bottom: 40px;
+        position: relative; z-index: 2;
+        box-shadow: 0 0 12px rgba(154,112,94,0.4);
+      "></div>
+
+      <div style="
+        font-family: 'Bebas Neue', sans-serif;
+        font-size: 7rem;
+        color:var(--dark2);
+        line-height: 0.85;
+        margin-bottom: 20px;
+        user-select: none;
+      ">02</div>
+
+      <div style="
+        width: 50px; height: 50px;
+        border: 1px solid rgba(154,112,94,0.35);
+        display: flex; align-items: center; justify-content: center;
+        color: #9a705e; font-size: 1.1rem;
+        margin-bottom: 24px;
+        background: rgba(154,112,94,0.05);
+      "><i class="fas fa-pencil-ruler"></i></div>
+
+      <h3 style="
+        font-family: 'Cormorant Garamond', serif;
+        font-size: 1.5rem; font-weight: 600;
+        color: #e8ddd5;
+        margin-bottom: 14px;
+        letter-spacing: 0.02em;
+      ">Etapa Creativa</h3>
+
+      <p style="
+        font-size: 0.88rem; font-weight: 300;
+        color: #bcbbba;
+        line-height: 1.9;
+      ">Creamos un diseño a tu medida con estilo y funcionalidad. Te mostramos vistas digitales para que veas cómo lucirá tu proyecto antes de empezar.</p>
     </div>
-    <div class="process-item">
-      <div class="process-dot"></div>
-      <div class="process-num">03</div>
-      <div class="process-icon"><i class="fas fa-file-signature"></i></div>
-      <h3 class="process-title">Documentación</h3>
-      <p class="process-desc">Preparamos todos los planos y documentos necesarios para construir sin sorpresas, cuidando cada detalle técnico y de permisos.</p>
+
+    <!-- PASO 03 -->
+    <div class="process-item" style="padding: 0 30px 0 0; position: relative;">
+
+      <div style="
+        width: 14px; height: 14px; border-radius: 50%;
+        border: 2px solid #9a705e;
+        background: #644031;
+        margin-bottom: 40px;
+        position: relative; z-index: 2;
+        box-shadow: 0 0 12px rgba(154,112,94,0.4);
+      "></div>
+
+      <div style="
+        font-family: 'Bebas Neue', sans-serif;
+        font-size: 7rem;
+        color:var(--dark2);
+        line-height: 0.85;
+        margin-bottom: 20px;
+        user-select: none;
+      ">03</div>
+
+      <div style="
+        width: 50px; height: 50px;
+        border: 1px solid rgba(154,112,94,0.35);
+        display: flex; align-items: center; justify-content: center;
+        color: #9a705e; font-size: 1.1rem;
+        margin-bottom: 24px;
+        background: rgba(154,112,94,0.05);
+      "><i class="fas fa-file-signature"></i></div>
+
+      <h3 style="
+        font-family: 'Cormorant Garamond', serif;
+        font-size: 1.5rem; font-weight: 600;
+        color: #e8ddd5;
+        margin-bottom: 14px;
+        letter-spacing: 0.02em;
+      ">Documentación</h3>
+
+      <p style="
+        font-size: 0.88rem; font-weight: 300;
+        color: #bcbbba;
+        line-height: 1.9;
+      ">Preparamos todos los planos y documentos necesarios para construir sin sorpresas, cuidando cada detalle técnico y de permisos.</p>
     </div>
-    <div class="process-item">
-      <div class="process-dot"></div>
-      <div class="process-num">04</div>
-      <div class="process-icon"><i class="fas fa-hard-hat"></i></div>
-      <h3 class="process-title">Dirección de Obra</h3>
-      <p class="process-desc">Coordinamos equipos y supervisamos cada etapa para que todo se cumpla en tiempo y forma, manteniéndote informado siempre.</p>
+
+    <!-- PASO 04 -->
+    <div class="process-item" style="padding: 0; position: relative;">
+
+      <div style="
+        width: 14px; height: 14px; border-radius: 50%;
+        border: 2px solid #9a705e;
+        background: #644031;
+        margin-bottom: 40px;
+        position: relative; z-index: 2;
+        box-shadow: 0 0 12px rgba(154,112,94,0.4);
+      "></div>
+
+      <div style="
+        font-family: 'Bebas Neue', sans-serif;
+        font-size: 7rem;
+        color:var(--dark2);
+        line-height: 0.85;
+        margin-bottom: 20px;
+        user-select: none;
+      ">04</div>
+
+      <div style="
+        width: 50px; height: 50px;
+        border: 1px solid rgba(154,112,94,0.35);
+        display: flex; align-items: center; justify-content: center;
+        color: #9a705e; font-size: 1.1rem;
+        margin-bottom: 24px;
+        background: rgba(154,112,94,0.05);
+      "><i class="fas fa-hard-hat"></i></div>
+
+      <h3 style="
+        font-family: 'Cormorant Garamond', serif;
+        font-size: 1.5rem; font-weight: 600;
+        color: #e8ddd5;
+        margin-bottom: 14px;
+        letter-spacing: 0.02em;
+      ">Dirección de Obra</h3>
+
+      <p style="
+        font-size: 0.88rem; font-weight: 300;
+        color: #bcbbba;
+        line-height: 1.9;
+      ">Coordinamos equipos y supervisamos cada etapa para que todo se cumpla en tiempo y forma, manteniéndote informado siempre.</p>
     </div>
+
   </div>
 </section>
 
@@ -1069,12 +1294,12 @@ footer {
 <section class="team" id="equipo">
   <div class="reveal">
     <p class="section-tag">Nuestro Equipo</p>
-    <h2 class="section-title">Las personas detrás de<br><strong>cada proyecto</strong></h2>
+    <h2 class="section-title" style="color: var(--dark)">Las personas detrás de<br><strong style="color: var(--dark);">cada proyecto</strong></h2>
   </div>
   <div class="team-grid reveal">
     <div class="team-card">
       <div class="team-card-accent"></div>
-      <img src="{{ url_for('static', filename='img/arquis/arq1.jpg') }}" alt="Karenina">
+      <img src="{{ url_for('static', filename='img/arquis/arq4.jpg') }}" alt="Karenina">
       <div class="team-body">
         <div class="team-name">Karenina</div>
         <div class="team-role">Arquitecta & Fundadora · Diseño Creativo</div>
@@ -1083,7 +1308,7 @@ footer {
     </div>
     <div class="team-card">
       <div class="team-card-accent"></div>
-      <img src="{{ url_for('static', filename='img/arquis/arq2.jpg') }}" alt="Pedro Méndez">
+      <img src="{{ url_for('static', filename='img/arquis/IMG_3457.jpg') }}" alt="Pedro Méndez">
       <div class="team-body">
         <div class="team-name">Pedro Méndez</div>
         <div class="team-role">Arquitecto · Dirección de Obra</div>
@@ -1220,11 +1445,7 @@ footer {
   </div>
 </footer>
 
-<!-- SOCIAL FIXED -->
-<div class="social-fixed">
-  <a href="https://www.instagram.com/kareninaestudio_arquitectos" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
-  <a href="https://www.facebook.com/profile.php?id=61572271654116" target="_blank" title="Facebook"><i class="fab fa-facebook-f"></i></a>
-</div>
+
 
 <!-- WHATSAPP -->
 <a href="https://wa.me/5217772361823?text=Hola%20Karenina%20Estudio%2C%20me%20interesa%20conocer%20m%C3%A1s%20sobre%20sus%20servicios%20de%20arquitectura."
@@ -1236,7 +1457,7 @@ footer {
 <script>
 // LOADER
 window.addEventListener('load', () => {
-  setTimeout(() => document.getElementById('loader').classList.add('hide'), 2400);
+  setTimeout(() => document.getElementById('loader').classList.add('hide'), 1500);
 });
 
 // PROGRESS BAR
