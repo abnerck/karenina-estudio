@@ -111,7 +111,7 @@ nav.scrolled {
 .nav-links a {
   font-family: 'Space Mono', monospace; font-size: clamp(0.65rem, 1vw, 0.8rem);
   letter-spacing: 0.12em; text-transform: uppercase;
-  color: rgba(242,237,232,0.7); text-decoration: none;
+  color: var(--cream); text-decoration: none;
   position: relative; transition: color 0.3s; white-space: nowrap;
 }
 .nav-links a::after {
@@ -159,7 +159,7 @@ nav.scrolled {
   display: flex; flex-direction: column;
   justify-content: flex-end; padding: 0 64px 80px;
   position: relative; z-index: 2;
-  background: linear-gradient(135deg, var(--dark2) 0%, var(--dark) 100%);
+  background: var(--warm);
 }
 .hero-left::after {
   content: ''; position: absolute; right: 0; top: 0; bottom: 0;
@@ -216,8 +216,8 @@ nav.scrolled {
 .btn-fill {
   font-family: 'Space Mono', monospace; font-size: 0.75rem;
   letter-spacing: 0.15em; text-transform: uppercase;
-  padding: 16px 38px; background: var(--warm);
-  color: var(--cream); text-decoration: none;
+  padding: 16px 38px; background: var(--dark);
+  color: var(--warm); text-decoration: none;
   border: 1px solid var(--primary); transition: all 0.35s; cursor: none;
 }
 .btn-fill:hover { background: transparent; color: var(--dark); }
