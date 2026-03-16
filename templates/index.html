@@ -60,7 +60,7 @@ body {
 }
 .loader-brand img {
   width: 120px; opacity: 0; animation: fadeUp 0.8s 0.3s forwards;
-  filter: brightness(0) invert(1) sepia(1) saturate(0.3) hue-rotate(0deg);
+  filter: brightness(0);
 }
 .loader-word {
   font-family: 'Bebas Neue', sans-serif;
@@ -102,11 +102,29 @@ nav.scrolled {
   backdrop-filter: blur(16px);
   border-color: rgba(100,64,49,0.2);
 }
+/* COLOR NAV AL HACER SCROLL */
+
+nav.scrolled .nav-logo img{
+  filter: brightness(0) invert(1);
+  transition: filter .3s;
+}
+
+nav.scrolled .nav-links a{
+  color: var(--warm);
+}
+
+nav.scrolled .nav-links a:hover{
+  color: white;
+}
+
+nav.scrolled .nav-hamburger span{
+  background: var(--warm);
+}
 .nav-logo { display: flex; align-items: center; gap: 14px; text-decoration: none; overflow: hidden; height: 44px; }
   .nav-logo img {
-    height: 140px;
-    filter: brightness(0) invert(1) sepia(0.4) saturate(0.6);
-  }
+  height: 140px;
+  filter: brightness(0);
+}
 .nav-links { display: flex; gap: clamp(14px, 2vw, 44px); list-style: none; }
 .nav-links a {
   font-family: 'Space Mono', monospace; font-size: clamp(0.65rem, 1vw, 0.8rem);
@@ -174,11 +192,7 @@ nav.scrolled {
   animation: heroZoom 18s ease-in-out infinite alternate;
   filter: brightness(0.75) saturate(0.8);
 }
-.hero-right::before {
-  content: ''; position: absolute; inset: 0; z-index: 1;
-  background: linear-gradient(to right, var(--dark) 0%, transparent 40%),
-              linear-gradient(to top, rgba(100,64,49,0.4) 0%, transparent 60%);
-}
+
 @keyframes heroZoom {
   from { transform: scale(1.08); }
   to   { transform: scale(1.15); }
@@ -399,57 +413,108 @@ nav.scrolled {
   color: hwb(90 97% 2% / 0.502); line-height: 1.8;
 }
 
-/* ── PORTFOLIO ────────────────────────────────────────── */
-.portfolio { padding: 160px 0 160px 64px; background: var(--dark); overflow: hidden; }
+/* ── PORTFOLIO (COLLAGE) ────────────────────────────────────────── */
+.portfolio {
+  padding:120px 6%;
+  background:#0f0f0f;
+  color:white;
+}
 .portfolio-header {
-  display: flex; justify-content: space-between; align-items: flex-end;
-  margin-bottom: 64px; padding-right: 64px;
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-end;
+  margin-bottom:60px;
+  flex-wrap:wrap;
+  gap:20px;
 }
-.portfolio-track-wrap { overflow: hidden; position: relative; }
-.portfolio-track {
-  display: flex; gap: 28px;
-  transition: transform 0.75s cubic-bezier(0.25,0.46,0.45,0.94);
-  will-change: transform;
+.portfolio-header-left p {
+  color:var(--warm);
+  letter-spacing:3px;
+  font-size:13px;
 }
-.portfolio-item { min-width: 400px; position: relative; overflow: hidden; cursor: none; }
-.portfolio-item img {
-  width: 100%; aspect-ratio: 3/4; object-fit: cover; display: block;
-  transition: transform 0.7s ease; filter: saturate(0.85);
+.portfolio-header-left h2 {
+  font-size:42px;
+  line-height:1.1;
+  font-weight:300;
 }
-.portfolio-item:hover img { transform: scale(1.07); filter: saturate(1); }
-.portfolio-overlay {
-  position: absolute; inset: 0;
-  background: linear-gradient(to top, rgba(52,27,18,0.9) 0%, transparent 55%);
-  display: flex; flex-direction: column; justify-content: flex-end;
-  padding: 32px; opacity: 0; transition: opacity 0.4s;
+.portfolio-header-left h2 strong {
+  font-weight:bold;
 }
-.portfolio-item:hover .portfolio-overlay { opacity: 1; }
-.portfolio-cat {
-  font-family: 'Space Mono', monospace; font-size: 0.65rem;
-  letter-spacing: 0.2em; text-transform: uppercase;
-  color: var(--secondary); margin-bottom: 8px;
+.portfolio-header .btn-proyecto {
+  padding:14px 28px;
+  border:1px solid rgba(255,255,255,0.3);
+  text-decoration:none;
+  color:white;
+  font-size:14px;
+  letter-spacing:1px;
+  transition:.3s;
 }
-.portfolio-name {
-  font-family: 'Cormorant Garamond', serif; font-size: 1.8rem;
-  font-weight: 600; color: var(--cream);
+.portfolio-header .btn-proyecto:hover {
+  background: rgba(255,255,255,0.1);
 }
-.portfolio-controls {
-  display: flex; align-items: center; gap: 14px;
-  margin-top: 44px; padding-right: 64px; justify-content: flex-end;
+/* COLLAGE GRID */
+.portfolio-collage {
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  grid-auto-rows:260px;
+  gap:18px;
 }
-.port-btn {
-  width: 54px; height: 54px; border: 1px solid rgba(242,237,232,0.18);
-  background: transparent; color: var(--warm); font-size: 1.2rem;
-  display: flex; align-items: center; justify-content: center;
-  transition: all 0.3s; cursor: none;
+.collage-item {
+  position:relative;
+  overflow:hidden;
+  border-radius:8px;
 }
-.port-btn:hover { background: var(--primary); border-color: var(--primary); }
-.port-dots { display: flex; gap: 8px; align-items: center; }
-.pdot {
-  width: 6px; height: 6px; border-radius: 50%;
-  background: rgba(188,187,186,0.3); transition: all 0.35s; cursor: pointer;
+.collage-item img {
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  transition:0.6s;
 }
-.pdot.active { background: var(--secondary); width: 26px; border-radius: 3px; }
+.collage-item:hover img {
+  transform:scale(1.05);
+}
+.collage-item .overlay {
+  position:absolute;
+  bottom:0;
+  padding:25px;
+  background:linear-gradient(to top,rgba(0,0,0,.7),transparent);
+  width:100%;
+}
+.collage-item .cat {
+  font-size:12px;
+  letter-spacing:2px;
+  opacity:.8;
+  margin-bottom:2px;
+}
+.collage-item .title {
+  font-size:20px;
+}
+.grid-span-2 {
+  grid-column:span 2;
+}
+.grid-row-span-2 {
+  grid-row:span 2;
+}
+@media (max-width:768px) {
+  .portfolio-collage {
+    grid-template-columns:repeat(2,1fr);
+  }
+  .portfolio-header-left h2 {
+    font-size:32px;
+  }
+}
+@media (max-width:480px) {
+  .portfolio-collage {
+    grid-template-columns:1fr;
+    grid-auto-rows:200px;
+  }
+  .grid-span-2 {
+    grid-column:span 1;
+  }
+  .grid-row-span-2 {
+    grid-row:span 1;
+  }
+}
 
 /* ── PROCESS ──────────────────────────────────────────── */
 .process { padding: 160px 64px; background: var(--primary); }
@@ -747,10 +812,8 @@ footer {
   .services,.process { padding: 80px 28px; }
   .services-grid { grid-template-columns: 1fr; }
   .services-header { flex-direction: column; gap: 24px; align-items: flex-start; }
-  .portfolio { padding: 80px 0 80px 28px; }
-  .portfolio-header { padding-right: 28px; flex-direction: column; gap: 20px; align-items: flex-start; }
-  .portfolio-item { min-width: 300px; }
-  .portfolio-controls { padding-right: 28px; }
+  .portfolio { padding:80px 28px; }
+  .portfolio-header { flex-direction: column; gap: 20px; align-items: flex-start; }
   .process-grid { grid-template-columns: 1fr 1fr; gap: 48px; }
   .process-grid::before { display: none; }
   .team { padding: 80px 28px; }
@@ -828,10 +891,6 @@ footer {
   .quote-text { font-size: 3.2rem; }
   .quote-author { font-size: 1.1rem; }
   
-  /* Portfolio */
-  .portfolio-name { font-size: 2.4rem; }
-  .portfolio-cat { font-size: 1rem; }
-  
   /* Botones - MÁS GRANDES */
   .btn-fill, .btn-outline, .btn-submit { 
     font-size: 1.1rem; 
@@ -875,8 +934,9 @@ footer {
 <!-- LOADER -->
 <div id="loader">
     <div class="loader-brand">
-      <img src="{{ url_for('static', filename='img/logo.png') }}" alt="Karenina Estudio" style="width: 220px; opacity: 0; animation: fadeUp 0.8s 0.3s forwards; filter:
-  brightness(0) invert(1) sepia(1) saturate(0.3) hue-rotate(0deg);">
+      <img src="{{ url_for('static', filename='img/logo.png') }}" 
+alt="Karenina Estudio" 
+style="width: 220px; opacity: 0; animation: fadeUp 0.8s 0.3s forwards; filter: brightness(0);">
     </div>
     <div class="loader-word">
       <!-- KARENINA -->
@@ -913,10 +973,21 @@ footer {
     <li><a href="#nosotros">Nosotros</a></li>
     <li><a href="#servicios">Servicios</a></li>
     <li><a href="#proyectos">Proyectos</a></li>
-    <li><a href="#proceso">Proceso</a></li>
-    <li><a href="#equipo">Equipo</a></li>
-    <li><a href="#contacto">Contacto</a></li>
+    <li><a href="#proceso" class="nav-light">Proceso</a></li>
+    <li><a href="#equipo" class="nav-light">Equipo</a></li>
+    <li><a href="#contacto" class="nav-light">Contacto</a></li>
   </ul>
+  <style>
+    .nav-light{
+color:var(--warm);
+}@media (max-width:1024px){
+
+.nav-light{
+color:var(--cream);
+}
+
+}
+  </style>
   <a href="#contacto" class="nav-cta">Agenda Consulta</a>
   <div class="nav-hamburger" id="hamburger">
     <span></span><span></span><span></span>
@@ -940,7 +1011,7 @@ footer {
     </div>
   </div>
   <div class="hero-right">
-    <img src="{{ url_for('static', filename='img/proyectos/fachada1.jpg') }}" alt="Karenina Estudio">
+    <img src="{{ url_for('static', filename='img/proyectos/CASA ERNESTO.png') }}" alt="Karenina Estudio">
   </div>
   <div class="hero-scroll">
     <div class="scroll-line"></div>
@@ -1189,88 +1260,86 @@ footer {
   </div>
 </section>
 
-<!-- PORTFOLIO -->
-<section class="portfolio" id="proyectos">
-  <div class="portfolio-header reveal">
-    <div>
-      <p class="section-tag" style="color:var(--warm)">Portafolio</p>
-      <h2 class="section-title">Proyectos que<br><strong>definen</strong> hogares</h2>
+<!-- PORTFOLIO - NUEVO COLLAGE -->
+<section class="portfolio" id="proyectos" style="background:#0f0f0f; color:white;">
+  <div class="portfolio-header">
+    <div class="portfolio-header-left">
+      <p style="color:var(--warm); letter-spacing:3px; font-size:13px;">PORTAFOLIO</p>
+      <h2 style="font-size:42px; line-height:1.1; font-weight:300;">
+        Proyectos que<br><strong>definen hogares</strong>
+      </h2>
     </div>
-    <a href="#contacto" class="btn-outline" style="border-color:rgba(242,237,232,0.3);color:var(--warm)">Platícanos tu proyecto</a>
+    <a href="#contacto" class="btn-proyecto" style="padding:14px 28px; border:1px solid rgba(255,255,255,0.3); text-decoration:none; color:white; font-size:14px; letter-spacing:1px; transition:.3s;">
+       Platícanos tu proyecto
+    </a>
   </div>
-  <div class="portfolio-track-wrap">
-    <div class="portfolio-track" id="portTrack">
-      <div class="portfolio-item">
-        <img src="{{ url_for('static', filename='img/proyectos/fachada1.jpg') }}" alt="Fachada">
-        <div class="portfolio-overlay">
-          <div class="portfolio-cat">Construcción</div>
-          <div class="portfolio-name">Fachada Contemporánea</div>
-        </div>
-      </div>
-      <div class="portfolio-item">
-        <img src="{{ url_for('static', filename='img/proyectos/sala.png') }}" alt="Sala">
-        <div class="portfolio-overlay">
-          <div class="portfolio-cat">Interiores</div>
-          <div class="portfolio-name">Sala Principal</div>
-        </div>
-      </div>
-      <div class="portfolio-item">
-        <img src="{{ url_for('static', filename='img/proyectos/exterior.jpg') }}" alt="Exterior">
-        <div class="portfolio-overlay">
-          <div class="portfolio-cat">Diseño Exterior</div>
-          <div class="portfolio-name">Vista Lateral</div>
-        </div>
-      </div>
-      <div class="portfolio-item">
-        <img src="{{ url_for('static', filename='img/proyectos/cocina1.webp') }}" alt="Cocina">
-        <div class="portfolio-overlay">
-          <div class="portfolio-cat">Interiores</div>
-          <div class="portfolio-name">Cocina Integral</div>
-        </div>
-      </div>
-      <div class="portfolio-item">
-        <img src="{{ url_for('static', filename='img/proyectos/fachada2.jpg') }}" alt="Fachada 2">
-        <div class="portfolio-overlay">
-          <div class="portfolio-cat">Arquitectura</div>
-          <div class="portfolio-name">Fachada Residencial</div>
-        </div>
-      </div>
-      <div class="portfolio-item">
-        <img src="{{ url_for('static', filename='img/proyectos/terraza.jpg') }}" alt="Terraza">
-        <div class="portfolio-overlay">
-          <div class="portfolio-cat">Diseño Exterior</div>
-          <div class="portfolio-name">Terraza BBQ</div>
-        </div>
-      </div>
-      <div class="portfolio-item">
-        <img src="{{ url_for('static', filename='img/proyectos/cocina2.png') }}" alt="Cocina 2">
-        <div class="portfolio-overlay">
-          <div class="portfolio-cat">Interiores</div>
-          <div class="portfolio-name">Remodelación Cocina</div>
-        </div>
-      </div>
-      <div class="portfolio-item">
-        <img src="{{ url_for('static', filename='img/arquis/bano.png') }}" alt="Baño">
-        <div class="portfolio-overlay">
-          <div class="portfolio-cat">Interiores</div>
-          <div class="portfolio-name">Baño de Lujo</div>
-        </div>
+
+  <!-- COLLAGE GRID -->
+  <div class="portfolio-collage">
+    <!-- 1 -->
+    <div class="collage-item grid-span-2 grid-row-span-2">
+      <img src="{{ url_for('static', filename='img/proyectos/FACHADA 3.jpg') }}" alt="Fachada Contemporánea">
+      <div class="overlay">
+        <div class="cat">Arquitectura</div>
+        <div class="title">Fachada Contemporánea</div>
       </div>
     </div>
-  </div>
-  <div class="portfolio-controls">
-    <div class="port-dots" id="portDots">
-      <div class="pdot active" data-i="0"></div>
-      <div class="pdot" data-i="1"></div>
-      <div class="pdot" data-i="2"></div>
-      <div class="pdot" data-i="3"></div>
-      <div class="pdot" data-i="4"></div>
-      <div class="pdot" data-i="5"></div>
-      <div class="pdot" data-i="6"></div>
-      <div class="pdot" data-i="7"></div>
+    <!-- 2 -->
+    <div class="collage-item">
+      <img src="{{ url_for('static', filename='img/proyectos/sala.png') }}" alt="Sala Residencial">
+      <div class="overlay">
+        <div class="cat">Interiores</div>
+        <div class="title">Sala Residencial</div>
+      </div>
     </div>
-    <button class="port-btn" id="portPrev"><i class="fas fa-arrow-left"></i></button>
-    <button class="port-btn" id="portNext"><i class="fas fa-arrow-right"></i></button>
+    <!-- 3 -->
+    <div class="collage-item">
+      <img src="{{ url_for('static', filename='img/proyectos/INTERIOR JAZMIN1.png') }}" alt="Diseño Interior">
+      <div class="overlay">
+        <div class="cat">Interiorismo</div>
+        <div class="title">Diseño Interior</div>
+      </div>
+    </div>
+    <!-- 4 -->
+    <div class="collage-item grid-row-span-2">
+      <img src="{{ url_for('static', filename='img/proyectos/JARDININTERIOR.jpg') }}" alt="Jardín Interior">
+      <div class="overlay">
+        <div class="cat">Arquitectura</div>
+        <div class="title">Jardín Interior</div>
+      </div>
+    </div>
+    <!-- 5 -->
+    <div class="collage-item">
+      <img src="{{ url_for('static', filename='img/proyectos/cocina1.webp') }}" alt="Cocina Integral">
+      <div class="overlay">
+        <div class="cat">Interiores</div>
+        <div class="title">Cocina Integral</div>
+      </div>
+    </div>
+    <!-- 6 -->
+    <div class="collage-item grid-span-2">
+      <img src="{{ url_for('static', filename='img/proyectos/TERRAZABBQ.jpg') }}" alt="Terraza BBQ">
+      <div class="overlay">
+        <div class="cat">Exterior</div>
+        <div class="title">Terraza BBQ</div>
+      </div>
+    </div>
+    <!-- 7 -->
+    <div class="collage-item">
+      <img src="{{ url_for('static', filename='img/proyectos/EXTERIORLATERAL.jpg') }}" alt="Vista Exterior">
+      <div class="overlay">
+        <div class="cat">Arquitectura</div>
+        <div class="title">Vista Exterior</div>
+      </div>
+    </div>
+    <!-- 8 -->
+    <div class="collage-item">
+      <img src="{{ url_for('static', filename='img/proyectos/ALBERCAVERITICAL1.jpg') }}" alt="Área de Alberca">
+      <div class="overlay">
+        <div class="cat">Exterior</div>
+        <div class="title">Área de Alberca</div>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -1625,30 +1694,37 @@ footer {
 <!-- FOOTER -->
 <footer class="custom-footer">
     <div class="footer-container">
-        <div class="footer-item">
-            <i class="fab fa-instagram"></i>
-            <p>kareninaestudio_arquitectos</p>
-        </div>
 
-        <div class="footer-item">
+        <!-- INSTAGRAM -->
+        <a href="https://www.instagram.com/kareninaestudio_arquitectos" target="_blank" class="footer-item">
+            <i class="fab fa-instagram"></i>
+            <p>@kareninaestudio_arquitectos</p>
+        </a>
+
+        <!-- WHATSAPP -->
+        <a href="https://wa.me/5217777954367" target="_blank" class="footer-item">
             <i class="fas fa-phone-alt"></i>
             <p>777 795 43 67</p>
-        </div>
+        </a>
 
+        <!-- UBICACIÓN -->
         <div class="footer-item">
             <i class="fas fa-map-marker-alt"></i>
             <p>Cuernavaca - Puebla - CDMX</p>
         </div>
 
-        <div class="footer-item">
+        <!-- FACEBOOK -->
+        <a href="https://www.facebook.com/profile.php?id=61572271654116" target="_blank" class="footer-item">
             <i class="fab fa-facebook-f"></i>
             <p>Karenina Estudio de Arquitectura y Diseño</p>
-        </div>
+        </a>
+
     </div>
-    <style>
-      .custom-footer {
-    background-color: #1a1512; /* Color café oscuro/negro del fondo */
-    color: #c5b398;            /* Color arena de los iconos */
+
+<style>
+.custom-footer {
+    background-color: #1a1512;
+    color: #c5b398;
     padding: 40px 20px;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
@@ -1659,7 +1735,7 @@ footer {
     display: flex;
     justify-content: space-around;
     align-items: flex-start;
-    flex-wrap: wrap; /* Para que sea responsivo */
+    flex-wrap: wrap;
     gap: 20px;
 }
 
@@ -1670,23 +1746,31 @@ footer {
     display: flex;
     flex-direction: column;
     align-items: center;
+    text-decoration: none;
 }
 
 .footer-item i {
-    font-size: 32px;      /* Tamaño de los iconos */
+    font-size: 32px;
     margin-bottom: 15px;
-    color: #c5b398;      /* Tono dorado/arena */
+    color: #c5b398;
 }
 
 .footer-item p {
     margin: 0;
     font-size: 14px;
-    color: #ffffff;      /* Texto en blanco para legibilidad */
+    color: #ffffff;
     line-height: 1.4;
     max-width: 180px;
 }
 
-/* Ajuste para móviles */
+/* hover elegante */
+.footer-item:hover i{
+    color:#ffffff;
+    transform: translateY(-3px);
+    transition:0.3s;
+}
+
+/* móvil */
 @media (max-width: 768px) {
     .footer-container {
         flex-direction: column;
@@ -1696,7 +1780,8 @@ footer {
         margin-bottom: 30px;
     }
 }
-    </style>
+</style>
+
 </footer>
 
 <script src="https://kit.fontawesome.com/your-code.js" crossorigin="anonymous"></script>
@@ -1753,28 +1838,6 @@ window.addEventListener('scroll', () => {
 document.getElementById('hamburger').addEventListener('click', () => {
   document.querySelector('.nav-links').style.display =
     document.querySelector('.nav-links').style.display === 'flex' ? 'none' : 'flex';
-});
-
-// PORTFOLIO CAROUSEL
-const track = document.getElementById('portTrack');
-const items = track.querySelectorAll('.portfolio-item');
-const dots  = document.querySelectorAll('.pdot');
-let cur2 = 0;
-function itemW() { return items[0].offsetWidth + 28; }
-function goTo(i) {
-  cur2 = ((i % items.length) + items.length) % items.length;
-  track.style.transform = `translateX(-${cur2 * itemW()}px)`;
-  dots.forEach((d,j) => d.classList.toggle('active', j === cur2));
-}
-document.getElementById('portNext').addEventListener('click', () => goTo(cur2+1));
-document.getElementById('portPrev').addEventListener('click', () => goTo(cur2-1));
-dots.forEach(d => d.addEventListener('click', () => goTo(+d.dataset.i)));
-setInterval(() => goTo(cur2+1), 4800);
-let tx=0;
-track.addEventListener('touchstart', e => tx=e.touches[0].clientX, {passive:true});
-track.addEventListener('touchend',   e => {
-  const dx = tx - e.changedTouches[0].clientX;
-  if(Math.abs(dx) > 50) goTo(dx > 0 ? cur2+1 : cur2-1);
 });
 
 // STAT COUNTERS
