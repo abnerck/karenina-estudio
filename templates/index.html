@@ -973,21 +973,17 @@ style="width: 220px; opacity: 0; animation: fadeUp 0.8s 0.3s forwards; filter: b
     <li><a href="#nosotros">Nosotros</a></li>
     <li><a href="#servicios">Servicios</a></li>
     <li><a href="#proyectos">Proyectos</a></li>
-    <li><a href="#proceso" class="nav-light">Proceso</a></li>
-    <li><a href="#equipo" class="nav-light">Equipo</a></li>
-    <li><a href="#contacto" class="nav-light">Contacto</a></li>
+    <li><a href="#proceso" class="nav-light" style="color: var(--warm);">Proceso</a></li>
+    <li><a href="#equipo" class="nav-light" style="color: var(--warm);">Equipo</a></li>
+    <li><a href="#contacto" class="nav-light" style="color: var(--warm);">Contacto</a></li>
   </ul>
   <style>
-    .nav-light{
-color:var(--warm);
-}@media (max-width:1024px){
-
-.nav-light{
-color:var(--cream);
-}
-
-}
-  </style>
+  .nav-light { color: var(--warm); }
+  @media (max-width: 1024px) {
+    .nav-light { color: var(--warm) !important; }
+    .nav-links a { color: var(--warm) !important; }
+  }
+</style>
   <a href="#contacto" class="nav-cta">Agenda Consulta</a>
   <div class="nav-hamburger" id="hamburger">
     <span></span><span></span><span></span>
@@ -1834,10 +1830,100 @@ window.addEventListener('scroll', () => {
   document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 70);
 });
 
-// HAMBURGER (basic)
-document.getElementById('hamburger').addEventListener('click', () => {
-  document.querySelector('.nav-links').style.display =
-    document.querySelector('.nav-links').style.display === 'flex' ? 'none' : 'flex';
+// HAMBURGER — Panel lateral deslizante
+const hamburger = document.getElementById('hamburger');
+const navLinks = document.querySelector('.nav-links');
+
+// Crear overlay de fondo
+const menuOverlay = document.createElement('div');
+menuOverlay.id = 'menu-overlay';
+document.body.appendChild(menuOverlay);
+
+// Estilos del panel y overlay via <style>
+const menuStyle = document.createElement('style');
+menuStyle.textContent = `
+  #menu-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: transparent;
+    z-index: 1998;
+    backdrop-filter: none;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+  }
+  #menu-overlay.active {
+    display: block;
+    opacity: 1;
+  }
+  @media (max-width: 1024px) {
+    .nav-links {
+      display: flex !important;
+      flex-direction: column;
+      position: fixed;
+      top: 0; right: 0; bottom: 0;
+      width: 280px;
+      background: #2e2b29;
+      border-left: 2px solid rgba(154,112,94,0.6);
+      padding: 100px 40px 40px;
+      gap: 32px;
+      z-index: 1999;
+      transform: translateX(100%);
+      transition: transform 0.45s cubic-bezier(0.25,0.46,0.45,0.94);
+    }
+    .nav-links.open {
+      transform: translateX(0);
+    }
+    .nav-links a {
+      color: #ffffff !important;
+      font-size: 1.1rem !important;
+      letter-spacing: 0.25em;
+    }
+    .nav-links a::after {
+      background: #9a705e;
+    }
+    .nav-links::before {
+      content: 'MENÚ';
+      position: absolute;
+      top: 48px; left: 40px;
+      font-family: 'Space Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.35em;
+      color: #9a705e;
+    }
+    .nav-links::after {
+      content: '';
+      position: absolute;
+      top: 68px; left: 40px; right: 40px;
+      height: 1px;
+      background: rgba(154,112,94,0.25);
+    }
+  }
+`;
+document.head.appendChild(menuStyle);
+
+function openMenu() {
+  navLinks.classList.add('open');
+  menuOverlay.classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeMenu() {
+  navLinks.classList.remove('open');
+  menuOverlay.classList.remove('active');
+  document.body.style.overflow = '';
+}
+
+hamburger.addEventListener('click', () => {
+  navLinks.classList.contains('open') ? closeMenu() : openMenu();
+});
+
+// Cerrar al hacer click en el overlay
+menuOverlay.addEventListener('click', closeMenu);
+
+// Cerrar al hacer click en un link
+navLinks.querySelectorAll('a').forEach(a => {
+  a.addEventListener('click', closeMenu);
 });
 
 // STAT COUNTERS
