@@ -146,21 +146,21 @@ nav.scrolled .nav-hamburger span{
   text-decoration: none; transition: all 0.35s; white-space: nowrap; flex-shrink: 0;
 }
 .nav-cta:hover { background: var(--secondary); color: var(--dark); }
-.nav-hamburger { 
-  display: none; 
-  flex-direction: column; 
-  gap: 8px; 
-  cursor: pointer; 
+.nav-hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 8px;
+  cursor: pointer;
   padding: 12px;
   background: rgba(255,255,255,0.1);
   border-radius: 8px;
 }
-.nav-hamburger span { 
-  display: block; 
-  width: 32px; 
-  height: 3px; 
-  background: var(--cream); 
-  transition: all 0.3s; 
+.nav-hamburger span {
+  display: block;
+  width: 32px;
+  height: 3px;
+  background: var(--cream);
+  transition: all 0.3s;
   border-radius: 3px;
 }
 .nav-hamburger:hover {
@@ -829,43 +829,43 @@ footer {
   /* NAV en móvil - MÁS GRANDE */
   nav { padding: 20px 25px; }
   .nav-logo img { height: 120px; }
-  .nav-hamburger { 
+  .nav-hamburger {
     padding: 18px;
     background: rgba(154,112,94,0.4);
     border-radius: 16px;
     border: 1px solid rgba(255,255,255,0.2);
   }
-  .nav-hamburger span { 
-    width: 48px; 
-    height: 5px; 
+  .nav-hamburger span {
+    width: 48px;
+    height: 5px;
     margin: 2px 0;
   }
-  
+
   /* HERO - MÁS GRANDE */
   .hero-title { font-size: 5.5rem; }
   .hero-desc { font-size: 1.9rem; }
   .hero-eyebrow { font-size: 1.3rem; }
-  .hero-btns .btn-fill, .hero-btns .btn-outline { 
-    font-size: 1.1rem; 
-    padding: 22px 35px; 
+  .hero-btns .btn-fill, .hero-btns .btn-outline {
+    font-size: 1.1rem;
+    padding: 22px 35px;
     width: 100%;
     text-align: center;
   }
-  
+
   /* Stats - MÁS GRANDE */
   .stats-bar { grid-template-columns: 1fr; }
   .stat-number { font-size: 7rem; }
   .stat-label { font-size: 1.1rem; }
-  
+
   /* Form */
   .form-row2 { grid-template-columns: 1fr; }
-  
+
   /* Process */
   .process-grid { grid-template-columns: 1fr; }
-  
+
   /* Footer */
   .footer-top { grid-template-columns: 1fr; }
-  
+
   /* Textos generales - MÁS GRANDES */
   .section-tag { font-size: 1.1rem; }
   .section-title { font-size: 4rem; }
@@ -886,26 +886,26 @@ footer {
   .footer-tagline { font-size: 1.4rem; }
   .footer-copy { font-size: 1rem; }
   .footer-col-title { font-size: 1.1rem; }
-  
+
   /* Quote */
   .quote-text { font-size: 3.2rem; }
   .quote-author { font-size: 1.1rem; }
-  
+
   /* Botones - MÁS GRANDES */
-  .btn-fill, .btn-outline, .btn-submit { 
-    font-size: 1.1rem; 
-    padding: 22px 35px; 
+  .btn-fill, .btn-outline, .btn-submit {
+    font-size: 1.1rem;
+    padding: 22px 35px;
   }
-  
+
   /* WhatsApp - MÁS GRANDE */
-  .wa-btn { 
-    width: 95px; 
-    height: 95px; 
-    font-size: 3rem; 
-    bottom: 20px; 
-    right: 20px; 
+  .wa-btn {
+    width: 95px;
+    height: 95px;
+    font-size: 3rem;
+    bottom: 20px;
+    right: 20px;
   }
-  
+
   /* Inputs más grandes */
   .fgroup input, .fgroup textarea, .fgroup select {
     font-size: 1.3rem;
@@ -914,7 +914,7 @@ footer {
   .fgroup label {
     font-size: 0.8rem;
   }
-  
+
   /* Process icons más grandes */
   .process-icon {
     width: 65px;
@@ -934,8 +934,8 @@ footer {
 <!-- LOADER -->
 <div id="loader">
     <div class="loader-brand">
-      <img src="{{ url_for('static', filename='img/logo.png') }}" 
-alt="Karenina Estudio" 
+      <img src="{{ url_for('static', filename='img/logo.png') }}"
+alt="Karenina Estudio"
 style="width: 220px; opacity: 0; animation: fadeUp 0.8s 0.3s forwards; filter: brightness(0);">
     </div>
     <div class="loader-word">
@@ -948,9 +948,9 @@ style="width: 220px; opacity: 0; animation: fadeUp 0.8s 0.3s forwards; filter: b
         <span style="animation-delay:0.6s">I</span>
         <span style="animation-delay:0.7s">N</span>
         <span style="animation-delay:0.8s">A</span>
-   
+
         <span class="space"></span>
-   
+
         <!-- ESTUDIO -->
         <span style="animation-delay:0.9s">E</span>
         <span style="animation-delay:1.0s">S</span>
@@ -1011,7 +1011,7 @@ color:var(--cream);
     </div>
   </div>
   <div class="hero-right">
-    <img src="{{ url_for('static', filename='img/proyectos/CASA ERNESTO.png') }}" alt="Karenina Estudio">
+    <img src="{{ url_for('static', filename='img/proyectos/FACHADA_20NOCTURNA-enhanced.png') }}" alt="Karenina Estudio">
   </div>
   <div class="hero-scroll">
     <div class="scroll-line"></div>
@@ -1185,20 +1185,20 @@ color:var(--cream);
         align-items: flex-start;
         gap: 20px;
       }
-      
+
       #servicios .services-grid {
         grid-template-columns: repeat(2, 1fr) !important; /* 2 columnas */
         gap: 10px;
       }
-      
+
       #servicios .service-card {
         padding: 12px !important;
       }
-      
+
       #servicios .service-title {
         font-size: 1.2rem !important;
       }
-      
+
       #servicios .service-desc {
         font-size: 0.7rem !important;
       }
@@ -1881,4 +1881,3 @@ function submitForm(e) {
 }
 </script>
 </body>
-</html>
