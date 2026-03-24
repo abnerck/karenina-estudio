@@ -997,14 +997,15 @@ style="width: 220px; opacity: 0; animation: fadeUp 0.8s 0.3s forwards; filter: b
 <!-- HERO -->
 <section class="hero" id="inicio">
   <div class="hero-left">
-
+    
     <h1 class="hero-title">
       <em>HABLEMOS<br>
       DE TU<br>
-      Idea</em>
+      Idea y como quieres vivirla</em>
     </h1>
-    <p class="hero-eyebrow">Arquitectura · Remodelación · Construcción · Interiores</p>
-    <p class="hero-desc" style="color: var(--dark);">Transformamos tus ideas en espacios que realmente se disfrutan. Planeación impecable, diseño que trasciende y acompañamiento en cada etapa de tu obra.</p>
+    <p class="hero-eyebrow">Sin complicaciones sin improvisaciones con claridad en cada paso.</p>
+    <p class="hero-desc" style="color: var(--dark);">Transformamos tu idea en un espacio que realmente se vive.
+Nos encargamos de que el proceso sea claro, ordenado y sin estrés, para que puedas disfrutar cada etapa… no solo el resultado final.</p>
     <div class="hero-btns">
       <a href="#proyectos" class="btn-fill">Ver Proyectos</a>
       <a href="#contacto" class="btn-fill">Agenda Videollamada</a>
@@ -1062,10 +1063,12 @@ style="width: 220px; opacity: 0; animation: fadeUp 0.8s 0.3s forwards; filter: b
   <div class="about-watermark">KE</div>
   <div class="reveal-left">
     <p class="section-tag">Sobre Nosotros</p>
-    <h2 class="section-title">Arquitectura que<br><strong>trasciende</strong> el tiempo</h2>
-    <p class="about-text">Arquitecta, mamá y fundadora de Karenina Estudio. Lo que empezó como un sueño personal, hoy es un equipo que une talento y experiencia en diferentes áreas para dar vida a proyectos completos.</p>
-    <p class="about-text">Me dedico a la parte creativa: el diseño, la proyección y las asesorías, siempre buscando explicar con un lenguaje claro y cercano para que cada cliente disfrute el proceso.</p>
-    <p class="about-text">Creo firmemente que la planeación y la visualización son la clave para ahorrar recursos y lograr espacios que realmente se disfruten. La visión que me impulsó a iniciar este estudio sigue creciendo: hacer de cada proyecto una experiencia confiable, creativa y emocionante.</p>
+    <h2 class="section-title">Diseñar también es <br><strong>entender</strong> como quieres vivir</h2>
+    <p class="about-text">Soy Arantza, arquitecta, mamá y fundadora de Karenina Estudio.
+Para mí, diseñar una casa no es solo resolver espacios…
+es entender cómo quieres vivir, qué necesitas y qué quieres sentir cuando estés ahí.
+Por eso acompañamos cada proyecto de forma cercana, cuidando tanto el diseño como el proceso. </p>
+    
     <a href="#proyectos" class="text-link">Explorar proyectos <i class="fas fa-arrow-right"></i></a>
   </div>
   <div class="about-img-wrap reveal-right">
@@ -1092,6 +1095,74 @@ style="width: 220px; opacity: 0; animation: fadeUp 0.8s 0.3s forwards; filter: b
     <a href="#contacto" class="text-link" style="color:var(--dark);">Agendar consulta <i class="fas fa-arrow-right"></i></a>
   </div>
 </section>
+
+<!--PARA TI -->
+<section class="para-ti">
+  <div class="container">
+    <h2 class="title">ESTO ES PARA TI SI:</h2>
+
+    <div class="cards">
+      <div class="card">
+        <h2 style="color: var(--light);" >Quieres construir o remodelar sin sentirte perdido</h2>
+        
+      </div>
+
+      <div class="card">
+        <h2 style="color: var(--light);">Buscas diseño con intención, no solo “algo bonito”</h2>
+      </div>
+
+      <div class="card">
+        <h2 style="color: var(--light);">Valoras un proceso claro y deseas optimizar recursos</h2>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+.para-ti {
+  padding: 70px 20px;
+  background: var(--warm);
+}
+
+.container {
+  max-width: 1100px;
+  margin: auto;
+  text-align: center;
+}
+
+.title {
+  color: var(--dark);
+  font-size: 1.8rem;
+  margin-bottom: 40px;
+  letter-spacing: 1px;
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+.card {
+  background: var(--dark2);
+  padding: 25px;
+  border-radius: 12px;
+  color: var(--warm);
+  border: 1px solid var(--primary);
+  transition: 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  background: var(--dark2);
+  color: var(--dark);
+}
+
+.card p {
+  margin: 0;
+  font-size: 1rem;
+}
+</style>
 
 <section class="services" id="servicios" style="padding: 40px 20px !important; background: #111;">
   <!-- Estilos Internos para Prioridad -->
@@ -1708,6 +1779,93 @@ style="width: 220px; opacity: 0; animation: fadeUp 0.8s 0.3s forwards; filter: b
   </div>
 </section>
 
+<!-- ===== FAQ KARENINA - CHAT ===== -->
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;1,300&family=Raleway:wght@300;400;500&display=swap" rel="stylesheet">
+
+<section class="kfaq-wrap">
+  <div class="kfaq-eyebrow">Preguntas frecuentes</div>
+  <h2 class="kfaq-title">¿Tienes dudas?</h2>
+  <p class="kfaq-sub">Selecciona una pregunta y te respondemos al instante</p>
+  <div class="kfaq-bar"></div>
+
+  <div class="kfaq-chat">
+    <div class="kfaq-question-btns" id="kfaq-btns">
+      <button class="kfaq-qbtn" onclick="kfaqAsk(0)">¿Por qué necesito un proyecto antes de construir?</button>
+      <button class="kfaq-qbtn" onclick="kfaqAsk(1)">¿Puedo contratar solo el diseño o también la construcción?</button>
+      <button class="kfaq-qbtn" onclick="kfaqAsk(2)">¿Cuánto cuesta hacer un proyecto arquitectónico?</button>
+      <button class="kfaq-qbtn" onclick="kfaqAsk(3)">¿Cómo sabré si quedará como lo imagino?</button>
+      <button class="kfaq-qbtn" onclick="kfaqAsk(4)">¿Trabajan en todo México o solo en Cuernavaca?</button>
+    </div>
+    <div class="kfaq-messages" id="kfaq-messages"></div>
+    <button class="kfaq-reset" id="kfaq-reset" onclick="kfaqReset()">+ Ver todas las preguntas</button>
+  </div>
+</section>
+
+<style>
+.kfaq-wrap { background: #1c1b1b; padding: 4rem 1.5rem; font-family: 'Raleway', sans-serif; }
+.kfaq-eyebrow { text-align: center; font-size: 11px; letter-spacing: 0.3em; color: #9a705e; text-transform: uppercase; margin-bottom: 0.6rem; }
+.kfaq-title { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: 2rem; color: #e8ddd5; text-align: center; margin: 0 auto 0.5rem; }
+.kfaq-sub { text-align: center; font-size: 13px; color: #888780; margin-bottom: 2.5rem; font-weight: 300; }
+.kfaq-bar { width: 40px; height: 1px; background: #9a705e; margin: 0 auto 2.5rem; }
+.kfaq-chat { max-width: 680px; margin: 0 auto; display: flex; flex-direction: column; gap: 1.2rem; }
+.kfaq-question-btns { display: flex; flex-direction: column; gap: 0.6rem; margin-bottom: 0.5rem; }
+.kfaq-qbtn { background: transparent; border: 0.5px solid rgba(154,112,94,0.4); color: #bcbbba; font-family: 'Raleway', sans-serif; font-size: 13px; padding: 0.75rem 1.1rem; text-align: left; cursor: pointer; transition: border-color 0.2s, color 0.2s, background 0.2s; line-height: 1.4; }
+.kfaq-qbtn:hover { border-color: #9a705e; color: #e8ddd5; background: rgba(154,112,94,0.06); }
+.kfaq-qbtn.active { border-color: #9a705e; color: #e8ddd5; background: rgba(154,112,94,0.1); }
+.kfaq-messages { display: flex; flex-direction: column; gap: 1rem; min-height: 60px; }
+.kfaq-bubble-user { align-self: flex-end; background: #644031; color: #e8ddd5; font-size: 13.5px; padding: 0.75rem 1.1rem; max-width: 80%; line-height: 1.5; border-radius: 12px 12px 2px 12px; animation: kfadeup 0.25s ease; }
+.kfaq-bubble-bot { align-self: flex-start; background: #2a2826; border: 0.5px solid rgba(154,112,94,0.2); color: #bcbbba; font-size: 13.5px; font-weight: 300; padding: 0.85rem 1.1rem; max-width: 85%; line-height: 1.7; border-radius: 12px 12px 12px 2px; animation: kfadeup 0.3s ease; }
+.kfaq-avatar { display: flex; align-items: center; gap: 8px; margin-bottom: 0.4rem; }
+.kfaq-dot { width: 8px; height: 8px; border-radius: 50%; background: #9a705e; }
+.kfaq-name { font-size: 11px; letter-spacing: 0.12em; color: #9a705e; text-transform: uppercase; }
+.kfaq-reset { align-self: center; background: transparent; border: 0.5px solid rgba(154,112,94,0.3); color: #888780; font-family: 'Raleway', sans-serif; font-size: 12px; letter-spacing: 0.1em; padding: 0.5rem 1.2rem; cursor: pointer; margin-top: 0.5rem; transition: color 0.2s, border-color 0.2s; display: none; }
+.kfaq-reset:hover { color: #e8ddd5; border-color: #9a705e; }
+.kfaq-typing { display: flex; gap: 4px; align-items: center; padding: 4px 0; }
+.kfaq-typing span { width: 6px; height: 6px; border-radius: 50%; background: #9a705e; opacity: 0.4; animation: kblink 1.2s infinite; }
+.kfaq-typing span:nth-child(2) { animation-delay: 0.2s; }
+.kfaq-typing span:nth-child(3) { animation-delay: 0.4s; }
+@keyframes kfadeup { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes kblink { 0%,100% { opacity: 0.2; } 50% { opacity: 1; } }
+</style>
+
+<script>
+const FAQS = [
+  { q: "¿Por qué necesito un proyecto antes de construir?", a: "Porque es la base de todo. Un proyecto bien planeado te permite visualizar cómo quedará tu casa antes de invertir, estimar costos reales y evitar errores durante la obra. En Karenina Estudio creemos que planear desde el inicio ahorra tiempo, dinero y frustraciones." },
+  { q: "¿Puedo contratar solo el diseño o también la construcción?", a: "Claro. Puedes elegir solo el diseño arquitectónico, el proyecto ejecutivo o el servicio integral con dirección de obra. Nos adaptamos a tus necesidades y a la etapa en la que te encuentres." },
+  { q: "¿Cuánto cuesta hacer un proyecto arquitectónico?", a: "Depende del tipo de proyecto, el tamaño y el nivel de detalle que necesites. Siempre iniciamos con una consulta inicial donde te damos una estimación clara y personalizada, para que sepas desde el principio cuánto invertirás y en qué etapas." },
+  { q: "¿Cómo sabré si quedará como lo imagino?", a: "Esa es una de nuestras especialidades. Durante el proceso te mostramos renders realistas y recorridos virtuales para que puedas ver cómo quedará tu casa antes de construirla. Así tomas decisiones con seguridad y sin sorpresas." },
+  { q: "¿Trabajan en todo México o solo en Cuernavaca?", a: "Estamos basados en Cuernavaca y el centro del país, pero también trabajamos de forma remota. Gracias a nuestras herramientas digitales, podemos planear y diseñar proyectos en distintas ciudades, siempre con comunicación cercana y seguimiento constante." }
+];
+
+let asked = [];
+
+function kfaqAsk(idx) {
+  if (asked.includes(idx)) return;
+  asked.push(idx);
+  document.querySelectorAll('.kfaq-qbtn')[idx].classList.add('active');
+  document.querySelectorAll('.kfaq-qbtn')[idx].disabled = true;
+  const msgs = document.getElementById('kfaq-messages');
+  const userBubble = document.createElement('div');
+  userBubble.className = 'kfaq-bubble-user';
+  userBubble.textContent = FAQS[idx].q;
+  msgs.appendChild(userBubble);
+  const typingWrap = document.createElement('div');
+  typingWrap.className = 'kfaq-bubble-bot';
+  typingWrap.innerHTML = '<div class="kfaq-typing"><span></span><span></span><span></span></div>';
+  msgs.appendChild(typingWrap);
+  setTimeout(() => {
+    typingWrap.innerHTML = '<div class="kfaq-avatar"><div class="kfaq-dot"></div><span class="kfaq-name">Karenina Estudio</span></div>' + FAQS[idx].a;
+    document.getElementById('kfaq-reset').style.display = 'block';
+  }, 900);
+}
+
+function kfaqReset() {
+  asked = [];
+  document.getElementById('kfaq-messages').innerHTML = '';
+  document.getElementById('kfaq-reset').style.display = 'none';
+  document.querySelectorAll('.kfaq-qbtn').forEach(b => { b.classList.remove('active'); b.disabled = false; });
+}
+</script>
 <!-- FOOTER -->
 <footer class="custom-footer">
     <div class="footer-container">
