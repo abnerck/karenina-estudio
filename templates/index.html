@@ -36,6 +36,7 @@ body {
   font-family: 'Cormorant Garamond', serif;
   overflow-x: hidden;
   cursor: none;
+  padding-top: 0;
 }
 
 /* ── PROGRESS BAR ─────────────────────────────────────── */
@@ -127,13 +128,14 @@ nav.scrolled .nav-hamburger span{
 .nav-logo { display: flex; align-items: center; gap: 14px; text-decoration: none; overflow: hidden; height: 44px; }
   .nav-logo img {
   height: 140px;
-  filter: brightness(0);
+  filter: brightness(0) invert(1); /* ✅ BLANCO */
+  transition: filter .3s;
 }
 .nav-links { display: flex; gap: clamp(14px, 2vw, 44px); list-style: none; }
 .nav-links a {
   font-family: 'Space Mono', monospace; font-size: clamp(0.65rem, 1vw, 0.8rem);
   letter-spacing: 0.12em; text-transform: uppercase;
-  color: var(--cream); text-decoration: none;
+  color: var(--warm); text-decoration: none;
   position: relative; transition: color 0.3s; white-space: nowrap;
 }
 .nav-links a::after {
@@ -176,6 +178,8 @@ nav.scrolled .nav-hamburger span{
   min-height: 100vh; position: relative;
   display: grid; grid-template-columns: 1fr 1fr;
   overflow: hidden;
+  padding-top: 120px;
+  
 }
 .hero-left {
   display: flex; flex-direction: column;
@@ -808,7 +812,7 @@ footer {
   .nav-hamburger { display: flex; }
   .hero { grid-template-columns: 1fr; }
   .hero-right { height: 50vh; }
-  .hero-left { padding: 120px 28px 64px; }
+  .hero-left { padding: 100px 28px 64px; }
   .stats-bar { grid-template-columns: 1fr 1fr; padding: 40px 28px; gap: 32px; }
   .stat-item { border: none; padding: 0; text-align: left; }
   .about,.contact { grid-template-columns: 1fr; gap: 60px; padding: 80px 28px; }
@@ -925,6 +929,26 @@ footer {
     height: 65px;
     font-size: 1.6rem;
   }
+}
+
+/* ===================================================== */
+/* 🔥 JUSTIFICADO GLOBAL - SOLO PARA TEXTO 🔥 */
+/* ===================================================== */
+p, .about-text, .service-desc, .process-desc, .team-desc, 
+.contact-desc, .footer-tagline, .footer-links a, .hero-desc,
+.quote-text, .kfaq-bubble-bot, .kfaq-bubble-user, .card p,
+.process-item p, .hero-eyebrow {
+  text-align: justify !important;
+}
+
+/* Opcional: mantener los títulos y elementos especiales sin justificar para no romper diseño */
+h1, h2, h3, h4, .hero-title, .section-title, .service-title, 
+.process-title, .team-name, .contact-title, .stat-label, 
+.nav-links a, .btn-fill, .btn-outline, .marquee-item,
+.service-num, .process-num, .footer-col-title, .section-tag,
+.hero-eyebrow, .quote-author, .kfaq-title, .kfaq-sub,
+.portfolio-header-left h2, .collage-item .cat, .collage-item .title {
+  text-align: inherit; /* respeta el diseño original */
 }
 </style>
 </head>
@@ -1744,54 +1768,23 @@ Por eso acompañamos cada proyecto de forma cercana, cuidando tanto el diseño c
     </div>
   </div>
   <div class="reveal-right">
-    <form class="contact-form" onsubmit="submitForm(event)">
-      <div class="form-row2">
-        <div class="fgroup">
-          <label>Nombre</label>
-          <input type="text" placeholder="Tu nombre completo" required>
-        </div>
-        <div class="fgroup">
-          <label>WhatsApp</label>
-          <input type="tel" placeholder="+52 777 000 0000" required>
-        </div>
-      </div>
-      <div class="fgroup">
-        <label>Correo Electrónico</label>
-        <input type="email" placeholder="tu@correo.com">
-      </div>
-      <div class="fgroup">
-        <label>Tipo de Proyecto</label>
-        <select>
-          <option value="">Selecciona una opción...</option>
-          <option>Construcción desde cero</option>
-          <option>Remodelación</option>
-          <option>Diseño de Interiores</option>
-          <option>Asesoría Arquitectónica</option>
-          <option>Renders / Visualización 3D</option>
-        </select>
-      </div>
-      <div class="fgroup">
-        <label>Cuéntanos tu idea</label>
-        <textarea placeholder="Describe tu proyecto, ubicación y presupuesto estimado..."></textarea>
-      </div>
-      <button type="submit" class="btn-submit">Enviar Mensaje <i class="fas fa-paper-plane"></i></button>
-    </form>
+    <!-- Calendly inline widget begin -->
+<div class="calendly-inline-widget" data-url="https://calendly.com/karenina-estudio?hide_landing_page_details=1&hide_gdpr_banner=1&background_color=f1f1f1&primary_color=786126" style="min-width:320px;height:700px;"></div>
+<script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
+<!-- Calendly inline widget end -->
   </div>
 </section>
 
-<!-- Calendly inline widget begin -->
-<div class="calendly-inline-widget" data-url="https://calendly.com/abnerck9/30min" style="min-width:320px;height:700px;"></div>
-<script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
-<!-- Calendly inline widget end -->
- 
+
+
+
 <!-- ===== FAQ KARENINA - CHAT ===== -->
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;1,300&family=Raleway:wght@300;400;500&display=swap" rel="stylesheet">
 
 <section class="kfaq-wrap">
   <div class="kfaq-eyebrow">Preguntas frecuentes</div>
   <h2 class="kfaq-title">¿Tienes dudas?</h2>
-  <p class="kfaq-sub">Selecciona una pregunta y te respondemos al instante</p>
-  <div class="kfaq-bar"></div>
+    <div class="kfaq-bar"></div>
 
   <div class="kfaq-chat">
     <div class="kfaq-question-btns" id="kfaq-btns">
