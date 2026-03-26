@@ -588,6 +588,23 @@ nav.scrolled .nav-hamburger span { background: var(--warm); }
 .contact-socials a:hover { background: var(--primary); color: var(--cream); border-color: var(--primary); }
 
 .calendly-inline-widget { min-width: 280px; height: 700px; width: 100%; }
+.calendly-lazy-wrap { width: 100%; min-width: 0; }
+.calendly-load-btn {
+  font-family: 'Space Mono', monospace;
+  font-size: clamp(0.65rem, 1.2vw, 0.75rem);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 16px 28px;
+  width: 100%;
+  background: var(--dark);
+  color: var(--warm);
+  border: 1px solid var(--primary);
+  cursor: pointer;
+  transition: all 0.35s;
+}
+.calendly-load-btn:hover { background: transparent; color: var(--dark); }
+.calendly-load-btn:focus-visible { outline: 2px solid var(--primary); outline-offset: 3px; }
+.calendly-inline-host { min-width: 280px; height: 700px; width: 100%; }
 
 /* ══════════════════════════════════════
    FAQ
@@ -1118,8 +1135,10 @@ p, .about-text, .service-desc, .process-desc,
 
 
   <div class="reveal-right">
-    <div class="calendly-inline-widget" data-url="https://calendly.com/karenina-estudio?hide_landing_page_details=1&hide_gdpr_banner=1&background_color=f1f1f1&primary_color=786126"></div>
-    <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
+    <div class="calendly-lazy-wrap" id="calendlyLazyRoot">
+      <button type="button" class="calendly-load-btn" id="calendlyLoadBtn" aria-expanded="false" aria-controls="calendlyInlineHost">Cargar calendario de citas</button>
+      <div id="calendlyInlineHost" class="calendly-inline-host calendly-inline-widget" hidden></div>
+    </div>
   </div>
 
   
@@ -1304,6 +1323,34 @@ function initCustomCarousel(carouselId) {
 }
 
 initCustomCarousel('carouselExampleIndicators');
+
+const CALENDLY_INLINE_URL = 'https://calendly.com/karenina-estudio?hide_landing_page_details=1&hide_gdpr_banner=1&background_color=f1f1f1&primary_color=786126';
+(function initLazyCalendly() {
+  const btn = document.getElementById('calendlyLoadBtn');
+  const host = document.getElementById('calendlyInlineHost');
+  if (!btn || !host) return;
+  let loaded = false;
+  function mount() {
+    if (loaded) return;
+    loaded = true;
+    btn.style.display = 'none';
+    btn.setAttribute('aria-expanded', 'true');
+    host.hidden = false;
+    function runInit() {
+      window.Calendly.initInlineWidget({ url: CALENDLY_INLINE_URL, parentElement: host });
+    }
+    if (window.Calendly) {
+      runInit();
+      return;
+    }
+    const s = document.createElement('script');
+    s.src = 'https://assets.calendly.com/assets/external/widget.js';
+    s.async = true;
+    s.onload = runInit;
+    document.body.appendChild(s);
+  }
+  btn.addEventListener('click', mount);
+})();
 
 document.querySelectorAll('.stat-number[data-target]').forEach(el => {
   const target = parseInt(el.dataset.target, 10);
