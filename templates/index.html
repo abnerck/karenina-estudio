@@ -291,6 +291,149 @@ nav.scrolled .nav-hamburger span { background: var(--warm); }
 @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 
 /* ══════════════════════════════════════
+   CAROUSEL
+══════════════════════════════════════ */
+.landing-carousel {
+  padding: clamp(44px, 8vw, 90px) clamp(16px, 4vw, 64px);
+  background: linear-gradient(180deg, #121110 0%, #1b1918 100%);
+}
+.landing-carousel-head {
+  max-width: 1200px;
+  margin: 0 auto clamp(18px, 3vw, 30px);
+}
+.landing-carousel-head .section-tag {
+  color: #a98778;
+  margin-bottom: 12px;
+}
+.landing-carousel-head h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(2rem, 4vw, 3.3rem);
+  font-weight: 300;
+  line-height: 1.08;
+  color: #f2ede8;
+}
+.landing-carousel-head h2 strong {
+  font-style: italic;
+  font-weight: 600;
+  color: #9a705e;
+}
+.landing-carousel-wrap {
+  max-width: min(560px, 92vw);
+  margin: 0 auto;
+}
+.carousel.slide {
+  position: relative;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid rgba(154,112,94,0.35);
+  box-shadow: 0 14px 34px rgba(0,0,0,0.35);
+  background: #000;
+}
+.carousel-inner {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 5;
+}
+.carousel-item {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 0.65s ease;
+  pointer-events: none;
+}
+.carousel-item.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+.carousel-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+  display: block;
+  filter: saturate(0.95) contrast(1.02);
+}
+.carousel-item::after {
+  content: '';
+  position: absolute;
+  inset: auto 0 0 0;
+  height: 34%;
+  background: linear-gradient(to top, rgba(0,0,0,0.45), transparent);
+}
+.carousel-indicators {
+  position: absolute;
+  left: 50%;
+  bottom: 14px;
+  transform: translateX(-50%);
+  z-index: 2;
+  display: flex;
+  gap: 8px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.carousel-indicators li {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: rgba(242,237,232,0.45);
+  border: 1px solid rgba(242,237,232,0.45);
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+.carousel-indicators li.active {
+  width: 28px;
+  border-radius: 999px;
+  background: #9a705e;
+  border-color: #9a705e;
+}
+.carousel-control-prev,
+.carousel-control-next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 2;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1px solid rgba(242,237,232,0.45);
+  background: rgba(0,0,0,0.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #f2ede8;
+  text-decoration: none;
+  backdrop-filter: blur(4px);
+  transition: all 0.25s ease;
+}
+.carousel-control-prev { left: 14px; }
+.carousel-control-next { right: 14px; }
+.carousel-control-prev:hover,
+.carousel-control-next:hover {
+  background: rgba(154,112,94,0.9);
+  border-color: #9a705e;
+}
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  width: 10px;
+  height: 10px;
+  border-top: 2px solid currentColor;
+  border-right: 2px solid currentColor;
+}
+.carousel-control-prev-icon { transform: rotate(-135deg); margin-left: 4px; }
+.carousel-control-next-icon { transform: rotate(45deg); margin-right: 4px; }
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+/* ══════════════════════════════════════
    STATS
 ══════════════════════════════════════ */
 .stats-bar {
@@ -633,6 +776,9 @@ p, .about-text, .service-desc, .process-desc,
   .hero-title { font-size: clamp(3rem,10vw,4.5rem); }
   .hero-btns { flex-direction: column; gap: 10px; }
   .hero-btns .btn-fill, .hero-btns .btn-outline { text-align: center; width: 100%; }
+  .carousel-inner { aspect-ratio: 3 / 4; }
+  .carousel-control-prev,
+  .carousel-control-next { width: 38px; height: 38px; }
 
   .stats-bar { grid-template-columns: 1fr 1fr; }
   .services-grid { grid-template-columns: repeat(2,1fr) !important; }
@@ -738,6 +884,53 @@ p, .about-text, .service-desc, .process-desc,
   <div class="hero-scroll">
     <div class="scroll-line"></div>
     <span>Scroll</span>
+  </div>
+</section>
+
+<section class="landing-carousel reveal" id="carrusel">
+  <div class="landing-carousel-head">
+    <p class="section-tag">Espacios que inspiran</p>
+    <h2>Nuestro <strong>carrusel</strong> de proyectos</h2>
+  </div>
+  <div class="landing-carousel-wrap">
+    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" data-interval="4600">
+      <ol class="carousel-indicators">
+        <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+        <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+        <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+        <li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
+        <li data-target="#carouselExampleIndicators" data-slide-to="4"></li>
+        <li data-target="#carouselExampleIndicators" data-slide-to="5"></li>
+      </ol>
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <img class="d-block w-100" src="{{ url_for('static', filename='img/carrusel/carrusel/IMG_0496.jpg') }}" alt="Carrusel 1">
+        </div>
+        <div class="carousel-item">
+          <img class="d-block w-100" src="{{ url_for('static', filename='img/carrusel/carrusel/IMG_0506.jpg') }}" alt="Carrusel 2">
+        </div>
+        <div class="carousel-item">
+          <img class="d-block w-100" src="{{ url_for('static', filename='img/carrusel/carrusel/IMG_0789.jpg') }}" alt="Carrusel 3">
+        </div>
+        <div class="carousel-item">
+          <img class="d-block w-100" src="{{ url_for('static', filename='img/carrusel/carrusel/IMG_0790.jpg') }}" alt="Carrusel 4">
+        </div>
+        <div class="carousel-item">
+          <img class="d-block w-100" src="{{ url_for('static', filename='img/carrusel/carrusel/IMG_8544.jpg') }}" alt="Carrusel 5">
+        </div>
+        <div class="carousel-item">
+          <img class="d-block w-100" src="{{ url_for('static', filename='img/carrusel/carrusel/IMG_9917.jpg') }}" alt="Carrusel 6">
+        </div>
+      </div>
+      <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev" aria-label="Imagen anterior">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+      </a>
+      <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next" aria-label="Imagen siguiente">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+      </a>
+    </div>
   </div>
 </section>
 
@@ -923,10 +1116,14 @@ p, .about-text, .service-desc, .process-desc,
     </div>
   </div>
 
+
   <div class="reveal-right">
     <div class="calendly-inline-widget" data-url="https://calendly.com/karenina-estudio?hide_landing_page_details=1&hide_gdpr_banner=1&background_color=f1f1f1&primary_color=786126"></div>
     <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
   </div>
+
+  
+  
 </section>
 
 <section class="kfaq-wrap">
@@ -1030,6 +1227,81 @@ const observer = new IntersectionObserver((entries) => {
 }, { threshold: 0.15 });
 
 document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach(el => observer.observe(el));
+
+function initCustomCarousel(carouselId) {
+  const root = document.getElementById(carouselId);
+  if (!root) return;
+
+  const slides = Array.from(root.querySelectorAll('.carousel-item'));
+  const dots = Array.from(root.querySelectorAll('.carousel-indicators li'));
+  const prev = root.querySelector('.carousel-control-prev');
+  const next = root.querySelector('.carousel-control-next');
+  if (!slides.length) return;
+
+  let index = slides.findIndex(slide => slide.classList.contains('active'));
+  if (index < 0) index = 0;
+
+  const intervalMs = Number(root.dataset.interval) || 4600;
+  let timer;
+
+  const goTo = (newIndex) => {
+    index = (newIndex + slides.length) % slides.length;
+    slides.forEach((slide, i) => slide.classList.toggle('active', i === index));
+    dots.forEach((dot, i) => dot.classList.toggle('active', i === index));
+  };
+
+  const nextSlide = () => goTo(index + 1);
+  const prevSlide = () => goTo(index - 1);
+
+  const start = () => {
+    clearInterval(timer);
+    timer = setInterval(nextSlide, intervalMs);
+  };
+
+  const stop = () => clearInterval(timer);
+
+  next?.addEventListener('click', (event) => {
+    event.preventDefault();
+    nextSlide();
+    start();
+  });
+
+  prev?.addEventListener('click', (event) => {
+    event.preventDefault();
+    prevSlide();
+    start();
+  });
+
+  dots.forEach((dot, dotIndex) => {
+    dot.addEventListener('click', () => {
+      goTo(dotIndex);
+      start();
+    });
+  });
+
+  root.addEventListener('mouseenter', stop);
+  root.addEventListener('mouseleave', start);
+  root.addEventListener('focusin', stop);
+  root.addEventListener('focusout', start);
+
+  let touchStartX = 0;
+  root.addEventListener('touchstart', (event) => {
+    touchStartX = event.changedTouches[0].screenX;
+  }, { passive: true });
+  root.addEventListener('touchend', (event) => {
+    const touchEndX = event.changedTouches[0].screenX;
+    const delta = touchEndX - touchStartX;
+    if (Math.abs(delta) < 40) return;
+    if (delta < 0) nextSlide();
+    else prevSlide();
+    start();
+  }, { passive: true });
+
+  goTo(index);
+  start();
+}
+
+initCustomCarousel('carouselExampleIndicators');
 
 document.querySelectorAll('.stat-number[data-target]').forEach(el => {
   const target = parseInt(el.dataset.target, 10);
