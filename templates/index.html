@@ -760,8 +760,12 @@ p, .about-text, .service-desc, .process-desc,
   .stat-item:nth-child(3), .stat-item:nth-child(4) { border-bottom: none; }
 
   .about { grid-template-columns: 1fr; gap: 50px; }
-  .about-reverse > *:first-child { order: 2; }
-  .about-reverse > *:last-child  { order: 1; }
+  /* Móvil/tablet: imagen arriba, texto abajo (igual que pidió la clienta) */
+  .about:not(.about-reverse) .about-img-wrap { order: 1; }
+  .about:not(.about-reverse) .reveal-left { order: 2; }
+  /* about-reverse: en DOM ya va foto → texto; no invertir (antes el texto quedaba primero) */
+  .about-reverse > *:first-child { order: 1; }
+  .about-reverse > *:last-child  { order: 2; }
   .about-watermark { display: none; }
 
   .services-grid { grid-template-columns: repeat(2,1fr) !important; }
