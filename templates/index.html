@@ -759,13 +759,19 @@ p, .about-text, .service-desc, .process-desc,
   .stat-item { border: none; padding: 0; text-align: left; border-bottom: 1px solid rgba(100,64,49,0.15); padding-bottom: 16px; }
   .stat-item:nth-child(3), .stat-item:nth-child(4) { border-bottom: none; }
 
-  .about { grid-template-columns: 1fr; gap: 50px; }
-  /* Móvil/tablet: imagen arriba, texto abajo (igual que pidió la clienta) */
-  .about:not(.about-reverse) .about-img-wrap { order: 1; }
-  .about:not(.about-reverse) .reveal-left { order: 2; }
-  /* about-reverse: en DOM ya va foto → texto; no invertir (antes el texto quedaba primero) */
-  .about-reverse > *:first-child { order: 1; }
-  .about-reverse > *:last-child  { order: 2; }
+  /* Flex en una columna: en varios móviles grid+order no reordenaba bien */
+  .about {
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+    align-items: stretch;
+  }
+  /* Arantza (#nosotros): DOM = texto luego foto → foto arriba con order negativo */
+  .about:not(.about-reverse) .about-img-wrap { order: -1; }
+  .about:not(.about-reverse) .reveal-left { order: 1; }
+  /* Pedro (#nosotros-pedro): DOM = foto luego texto → mismo orden visual */
+  .about-reverse > *:first-child { order: 0; }
+  .about-reverse > *:last-child { order: 1; }
   .about-watermark { display: none; }
 
   .services-grid { grid-template-columns: repeat(2,1fr) !important; }
